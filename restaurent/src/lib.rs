@@ -81,15 +81,90 @@
 //     meal.toast = String::from("Wheat"); // toast field is private
 // }
 
-mod back_of_house{
-    pub enum Appetizer {
-        Soup, 
-        Salad,
+// mod back_of_house{
+//     pub enum Appetizer {
+//         Soup, 
+//         Salad,
+//     }
+// }
+
+// pub fn eat_at_restaurant() {
+//     let order1: Appetizer = back_of_house::Appetizer::Soup;
+//     let order2: Appetizer = back_of_house::Appetizer::Salad;
+
+// }
+
+//use keyword
+
+// mod front_of_house {
+//     pub mod hosting {
+//         pub fn add_to_waitlist() {}
+//     }
+// }
+
+// // use crate::front_of_house::hosting; //absolute
+// use self::front_of_house::hosting; //relative
+
+
+// pub fn eat_at_restaurant() {
+//     hosting::add_to_waitlist();
+//     hosting::add_to_waitlist();
+//     hosting::add_to_waitlist();
+
+// }
+
+// use std::fmt;
+// use std::io;
+
+// fn function1() -> fmt::Result {
+//     // --snip --
+// }
+
+// fn function2() -> io::Result<()> {
+
+// }
+
+//OR
+
+// use std::fmt::Result;
+// use std::io::Result as IoResult;
+
+// fn function1() -> Result {
+//     //--snip
+//     Ok(())
+// }
+
+// fn function2() -> IoResult<()>{
+//     //--snip--
+//     Ok(())
+// }
+
+// use rand::Rng;
+// use rand::ErrorKind::Transient;
+// use rand::CryptoRng;
+use rand::{Rng, CryptoRng, ErrorKind::Transient};
+
+// use std::io;
+// use std::io::Write;
+// use std::io::{self, Write};
+use std::io::*;
+
+
+mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
     }
 }
 
+pub use crate::front_of_house::hosting; //for external export
+
+
 pub fn eat_at_restaurant() {
-    let order1: Appetizer = back_of_house::Appetizer::Soup;
-    let order2: Appetizer = back_of_house::Appetizer::Salad;
+
+    let secret_number: i32 = rand::thread_rng().gen_range(1, 101);
+
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
 
 }
